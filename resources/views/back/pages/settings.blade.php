@@ -71,7 +71,9 @@
         </div>
         <div class="tab-pane fade" id="tabs-activity-8" role="tabpanel">
           <h4>Activity tab</h4>
-          <div>Donec ac vitae diam amet vel leo egestas consequat rhoncus in luctus amet, facilisi sit mauris accumsan nibh habitant senectus</div>
+          <div>
+        @livewire('author-blog-social-media-form')
+          </div>
         </div>
       </div>
     </div>
