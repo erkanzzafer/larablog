@@ -38,32 +38,34 @@
                     <div class="mb-2" style="max-width:200px">
                     <img src="" alt="" class="img-thumbnail" id="logo-image-preview" data-ijabo-default-img="{{\App\Models\Setting::find(1)->blog_logo}}">
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <form action="{{route('author.change-blog-logo')}}" method="POST" id="changeBlogLogoForm">
-                        @csrf
-                    <div class="mb-2">
-                        <input type="file" name="blog_logo" class="form-control">
+                    <div class="col-md-6">
+                        <form action="{{route('author.change-blog-logo')}}" method="POST" id="changeBlogLogoForm">
+                            @csrf
+                        <div class="mb-2">
+                            <input type="file" name="blog_logo" class="form-control">
+                        </div>
+                        <button class="btn btn-primary">Change Logo</button>
+                        </form>
                     </div>
-                    <button class="btn btn-primary">Change Logo</button>
-                    </form>
                 </div>
 
+
                 <div class="col-md-6">
-                    <h3>Set Blog Logo</h3>
+                    <h3>Set Blog Favicon</h3>
                     <div class="mb-2" style="max-width:200px">
-                    <img src="" alt="" class="img-thumbnail" id="logo-image-preview" data-ijabo-default-img="{{\App\Models\Setting::find(1)->blog_logo}}">
+                    <img src="" alt="" class="img-thumbnail" id="favicon-image-preview" data-ijabo-default-img="{{\App\Models\Setting::find(1)->blog_favicon}}">
+                    </div>
+                    <div class="col-md-6">
+                        <form action="{{route('author.change-blog-favicon')}}" method="POST" id="changeBlogFaviconForm">
+                            @csrf
+                        <div class="mb-2">
+                            <input type="file" name="blog_favicon" class="form-control">
+                        </div>
+                        <button class="btn btn-primary">Change Favicon</button>
+                        </form>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <form action="{{route('author.change-blog-logo')}}" method="POST" id="changeBlogLogoForm">
-                        @csrf
-                    <div class="mb-2">
-                        <input type="file" name="blog_logo" class="form-control">
-                    </div>
-                    <button class="btn btn-primary">Change Logo</button>
-                    </form>
-                </div>
+
             </div>
           </div>
         </div>
@@ -92,6 +94,23 @@
         }
     });
 
+    $('input[name="blog_favicon"]').ijaboViewer({
+        preview:'#favicon-image-preview',
+        imageShape:'square',
+        allowedExtensions:['ico'],
+        onErrorShape:function(message,element){
+            alert(message);
+        },
+        onInvalidType: function(message,element){
+            alert(message);
+        },
+        onSuccess:function(message,element){
+
+        }
+    });
+
+
+
             $('#changeBlogLogoForm').submit(function(e){
                 e.preventDefault();
                 var form =this;
@@ -118,6 +137,35 @@
                 });
 
             });
+
+            $('#changeBlogFaviconForm').submit(function(e){
+                e.preventDefault();
+                var form =this;
+                $.ajax({
+                    url:$(form).attr('action'),
+                    method:$(form).attr('method'),
+                    data:new FormData(form),
+                    processData:false,
+                    dataType:'json',
+                    contentType:false,
+                    beforeSend:function(){},
+                    success:function(data){
+                        toastr.remove();
+                        if(data.status==1){
+                            alert("1");
+                            toastr.success(data.msg);
+                            $(form)[0].reset();
+                            Livewire.emit('updateTopHeader');
+                        }else{
+                            alert("0");
+                            toastr.error(data.msg);
+                        }
+                    }
+
+                });
+
+            });
+
 
   </script>
 

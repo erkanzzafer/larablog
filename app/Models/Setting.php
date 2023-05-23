@@ -20,4 +20,7 @@ class Setting extends Model
     public function getBlogLogoAttribute($value){
         return asset('back/dist/img/logo-favicon/'.$value);
     }
+    public function getBlogFaviconAttribute($value){
+        return asset('back/dist/img/logo-favicon/'.$value);
+    }
 }
