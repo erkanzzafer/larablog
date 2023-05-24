@@ -24,7 +24,7 @@
     <link href="./back/dist/css/demo.min.css?1684106062" rel="stylesheet"/>
     <link rel="stylesheet" href="{{asset('back/dist/libs/ijabo/ijabo.min.css')}}">
 
-    <link rel="stylesheet" href="{{ asset('back/dist/libs/ijaboCrop Tool/ijaboCropTool.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/back/dist/libs/ijaboCropTool/ijaboCropTool.min.css') }}">
     @stack('stylesheets')
     @livewireStyles
     <style>
@@ -62,7 +62,7 @@
     <script src="./back/dist/libs/jsvectormap/dist/js/jsvectormap.min.js?1684106062" defer></script>
     <script src="./back/dist/libs/jsvectormap/dist/maps/world.js?1684106062" defer></script>
     <script src="./back/dist/libs/jsvectormap/dist/maps/world-merc.js?1684106062" defer></script>
-    <script src="{{ asset('back/dist/libs/ijaboCropTool/ijaboCropTool.min.js') }}"></script>
+    <script src="{{ asset('/back/dist/libs/ijaboCropTool/ijaboCropTool.min.js') }}"></script>
     <script src="{{asset('back/dist/libs/ijaboViewer/jquery.ijaboViewer.min.js')}}"></script>
     <!-- Tabler Core -->
     <script src="./back/dist/js/tabler.min.js?1684106062" defer></script>

@@ -18,5 +18,8 @@ Route::prefix('author')->name('author.')->group(function(){
         Route::view('/settings',[AuthorController::class,'back.pages.settings'])->name('settings');
         Route::post('/change-blog-logo',[AuthorController::class,'changeBlogLogo'])->name('change-blog-logo');
         Route::post('/change-blog-favicon',[AuthorController::class,'changeBlogFavicon'])->name('change-blog-favicon');
+        Route::view('/authors','back.pages.authors')->name('authors');
+        Route::view('/addAuthor','back.pages.add_author')->name('addAuthor');
+
     });
 });
