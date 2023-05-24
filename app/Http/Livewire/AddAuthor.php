@@ -30,7 +30,7 @@ class AddAuthor extends Component
             $author->name=$this->name;
             $author->email=$this->email;
             $author->username=$this->username;
-            $author->password=Hash::make($default_password);
+            $author->password=Hash::make('123456');
             $author->type=$this->author_type;
             $author->direct_publish=$this->direct_publisher;
             $saved=$author->save();

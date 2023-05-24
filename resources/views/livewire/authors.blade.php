@@ -29,8 +29,15 @@
           </div>
         </div>
         <div class="d-flex">
-          <a href="#" class="card-btn">Edit</a>
-          <a href="#" class="card-btn">Delete</a>
+          <a href="{{url('author/editAuthor/'.$author->id)}}" class="card-btn">Edit</a>
+
+          <form action="{{ url('author/deleteAuthor/'.$author->id)}}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button class="card-btn">Delete</button>
+        </form>
+
+
 
         </div>
       </div>

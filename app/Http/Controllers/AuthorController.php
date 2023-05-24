@@ -88,6 +88,28 @@ class AuthorController extends Controller
                 }else{
                     return response()->json(['status'=>0,'msg'=>'something went wrong']);
                 }
-
     }
+
+                public function editAuthor ($id){
+                    $user = User::findOrFail($id);
+                    return view('back.pages.edit_Author', compact('user'));
+                }
+
+                public function updateAuthor(Request $request,$id){
+                    $user=User::find($id);
+                    $user->name=$request->input('name');
+                    $user->email=$request->input('email');
+                    $user->username=$request->input('username');
+                    $user->type=$request->input('author_type');
+                    $user->direct_publish=$request->input('direct_publish');
+                    $user->update();
+                    return redirect('author/authors');
+                }
+
+                function deleteAuthor($id){
+                    $user = User::findOrFail($id);
+                    $user->delete();
+                    return redirect()->route('author.authors')->with('success', 'User silindi');
+                }
+
 }
