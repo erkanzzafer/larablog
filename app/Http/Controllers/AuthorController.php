@@ -8,9 +8,20 @@ use App\Models\User;
 use Illuminate\Support\Facades\File;
 use App\Models\Setting;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
+use Illuminate\Support\Facades\Hash;
+
 
 class AuthorController extends Controller
 {
+
+    public function test(){
+
+
+        dd(Hash::make('123456'));
+
+
+       }
+
     public function index(Request $request){
         return view('back.pages.home');
     }

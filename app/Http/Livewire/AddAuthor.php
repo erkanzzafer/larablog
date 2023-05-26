@@ -13,6 +13,9 @@ use Nette\Utils\Random;
 class AddAuthor extends Component
 {
     public $name, $email, $username, $author_type, $direct_publisher;
+
+
+
     public function addAuthor(){
          $this->validate([
              'name'       => 'required',

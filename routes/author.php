@@ -1,6 +1,8 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\Subcategory;
+
 
 Route::prefix('author')->name('author.')->group(function(){
 
@@ -23,7 +25,10 @@ Route::prefix('author')->name('author.')->group(function(){
         Route::get('/editAuthor/{id}',[AuthorController::class,'editAuthor'])->name('editAuthor');
         Route::put('/updateAuthor/{id}',[AuthorController::class,'updateAuthor'])->name('updateAuthor');
         Route::delete('/deleteAuthor/{id}', [AuthorController::class,'deleteAuthor'])->name('deleteAuthor');
-
+        Route::view('/categories','back.pages.categories')->name('categories');
+        Route::view('/subcategories','back.pages.subcategories')->name('subcategories');
+        Route::view('/addsubcategory','back.pages.add_subcategory')->name('addsubcategory');
+        Route::post('/addsubcategories',[SubCategory::class,'addSubcategory']);
 
     });
 });
