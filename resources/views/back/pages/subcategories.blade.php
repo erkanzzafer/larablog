@@ -18,52 +18,53 @@
 
       <div class="row mt-3">
 
-            <div class="col-md-6 mb-2">
-                <div class="col-md-6 col-lg-12">
-                    <div class="card">
-                      <div class="card-header">
-                        <ul class="nav nav-pills card-header-pills">
-                            <h4>SubCategories</h4>
-                          <li class="nav-item ms-auto">
-                            <a href="{{url('/author/addsubcategory')}}" class="btn btn-sm btn-primary">Add Sub Category</a>
-                        </li>
-                        </ul>
-                      </div>
-                      <div class="card-body">
-                        <p class="text-muted"> <div class="table-responsive">
-                            <table class="table table-vcenter card-table table-striped">
-                              <thead>
-                                <tr>
-                                  <th>Sub Cat. Name</th>
-                                  <th>Parent Category</th>
-                                  <th>Number of Posts</th>
-                                  <th class="w-1"></th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td>any name</td>
-                                  <td class="text-muted">
-                                  any name
-                                  </td>
-                                  <td class="text-muted">
-                                    4
-                                   </td>
-                                  <td>
-                                    <div class="btn-group">
-                                        <a href="#" class="btn btn-sm btn-primary">Edit</a> &nbsp;
-                                        <a href="#" class="btn btn-sm btn-danger">Delete</a> &nbsp;
-                                    </div>
-                                  </td>
-                                </tr>
-
-                              </tbody>
-                            </table>
-                          </div></p>
-                      </div>
-                    </div>
+        <div class="col-md-6 mb-2">
+            <div class="col-md-6 col-lg-12">
+                <div class="card">
+                  <div class="card-header">
+                    <ul class="nav nav-pills card-header-pills">
+                        <h4>SubCategories</h4>
+                      <li class="nav-item ms-auto">
+                        <a href="{{route('author.addsubcategory')}}" class="btn btn-sm btn-primary">Add Sub Category</a>
+                    </li>
+                    </ul>
                   </div>
-            </div>
+                  <div class="card-body">
+                    <p class="text-muted"> <div class="table-responsive">
+                        <table class="table table-vcenter card-table table-striped">
+                          <thead>
+                            <tr>
+                              <th>Sub Cat. Name</th>
+                              <th>Parent Category</th>
+                              <th>Number of Posts</th>
+                              <th class="w-1"></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            @foreach (\App\Models\Subcategory::all() as $subcategory )
+                             <tr>
+                              <td>{{$subcategory->subcategory_name}}</td>
+                              <td class="text-muted">
+                              {{$subcategory->category->category_name}}
+                              </td>
+                              <td class="text-muted">
+                                4
+                               </td>
+                              <td>
+                                <div class="btn-group">
+                                    <a href="{{url('author/editsubcategories/'.$subcategory->id)}}" class="btn btn-sm btn-primary">Edit</a> &nbsp;
+                                    <a href="#" class="btn btn-sm btn-danger">Delete</a> &nbsp;
+                                </div>
+                              </td>
+                            </tr>
+                            @endforeach
+                          </tbody>
+                        </table>
+                      </div></p>
+                  </div>
+                </div>
+              </div>
+        </div>
 
       </div>
 @endsection

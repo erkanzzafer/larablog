@@ -29,6 +29,8 @@ Route::prefix('author')->name('author.')->group(function(){
         Route::view('/subcategories','back.pages.subcategories')->name('subcategories');
         Route::view('/addsubcategory','back.pages.add_subcategory')->name('addsubcategory');
         Route::post('/addsubcategories',[SubCategory::class,'addSubcategory']);
+        Route::get('/editsubcategories/{id}',[SubCategory::class,'editSubcategory'])->name('editsubcategories');
+        Route::put('/updatesubcategories/{id}',[SubCategory::class,'updateSubcategory'])->name('updatesubcategories');
 
     });
 });

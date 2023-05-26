@@ -134,13 +134,29 @@
                     </span>
                   </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('author.categories')}}" >
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#navbar-extra" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
 
                       <span class="nav-link-title">
-                       Categories
+                        Kategoriler
                       </span>
                     </a>
+                    <div class="dropdown-menu">
+                      <div class="dropdown-menu-columns">
+                        <div class="dropdown-menu-column">
+
+
+                          <a class="dropdown-item" href="{{route('author.categories')}}" >
+                           Kategori Ekle
+                          </a>
+                          <a class="dropdown-item" href="{{route('author.subcategories')}}">
+                             Alt Kategori Ekle
+                            </a>
+                        </div>
+                        <div class="dropdown-menu-column">
+                        </div>
+                      </div>
+                    </div>
                   </li>
 
                  @if (auth()->user()->type==1)
@@ -150,6 +166,7 @@
                       Authors
                       </span>
                     </a>
+
                   </li>
                  @endif
 
