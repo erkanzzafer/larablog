@@ -10,6 +10,9 @@ use App\Models\Setting;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Illuminate\Support\Facades\Hash;
 
+use App\Models\Post;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class AuthorController extends Controller
 {
@@ -123,4 +126,53 @@ class AuthorController extends Controller
                     return redirect()->route('author.authors')->with('success', 'User silindi');
                 }
 
+                function createPost(Request $request){
+
+                  dd('1asd');
+                }
+
+                function createPost2(Request $request){
+                    $request->validate([
+                        'sayfa_baslik'=>'required',
+                        'sayfa_icerik'=>'required',
+                        'sayfa_kategori'=>'required',
+                        'sayfa_gorsel' => 'required',
+                        'seo_baslik' => 'required',
+                        'seo_etiket' => 'required',
+                        'seo_icerik' => 'required'
+
+                    ]);
+
+                    if ($request->hasFile('sayfa_gorsel')){
+                        $path='back/images/post_images/';
+                        $file=$request->file('sayfa_gorsel');
+                        $filename=$file->getClientOriginalName();
+                        $new_filename=time().'_'.$filename;
+                          //$filename=time().'_'.rand(1,2000).'_larablog_favicon.co';
+                      //  $upload = Storage::disk('public')-> put($new_filename,(string)file_get_contents($file));
+                        $upload=$file->move(public_path($path),$new_filename);
+                        if($upload){
+                            $post= new Post();
+                            $post->author_id=auth()->id();
+                            $post->category_id=$request->sayfa_kategori;
+                            $post->post_title=$request->sayfa_baslik;
+                            $post->post_slug=Str::slug($request->sayfa_baslik);
+                            $post->post_content=$request->sayfa_icerik;
+                            $post->seo_baslik=$request->seo_baslik;
+                            $post->seo_etiket=$request->seo_etiket;
+                            $post->seo_icerik=$request->seo_icerik;
+                            $post->sayfa_gorsel=$new_filename;
+                            $saved=$post->save();
+                            if($saved){
+                                return response()->json(['code'=>1,'msg'=>'Ürün başarıyla eklendi']);
+                            }else{
+                                return response()->json(['code'=>3,'msg'=>'Bir hata oluştu']);
+                            }
+                        }else{
+                            return response()->json(['code' =>3, 'msg' =>'Görsel Yüklenirken hata oluştu.']);
+                        }
+                    }
+
+
+                }
 }

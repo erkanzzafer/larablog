@@ -16,15 +16,15 @@
     <title>@yield('pageTitle')</title>
     <!-- CSS files -->
     <link rel="shortcut icon" href="{{\App\Models\Setting::find(1)->blog_favicon}}" type="image/x-icon">
-    <base href="/">
-    <link href="./back/dist/css/tabler.min.css?1684106062" rel="stylesheet"/>
-    <link href="./back/dist/css/tabler-flags.min.css?1684106062" rel="stylesheet"/>
-    <link href="./back/dist/css/tabler-payments.min.css?1684106062" rel="stylesheet"/>
-    <link href="./back/dist/css/tabler-vendors.min.css?1684106062" rel="stylesheet"/>
-    <link href="./back/dist/css/demo.min.css?1684106062" rel="stylesheet"/>
-    <link rel="stylesheet" href="{{asset('back/dist/libs/ijabo/ijabo.min.css')}}">
 
-    <link rel="stylesheet" href="{{ asset('/back/dist/libs/ijaboCropTool/ijaboCropTool.min.css') }}">
+    <link href="/back/dist/css/tabler.min.css?1684106062" rel="stylesheet"/>
+    <link href="/back/dist/css/tabler-flags.min.css?1684106062" rel="stylesheet"/>
+    <link href="/back/dist/css/tabler-payments.min.css?1684106062" rel="stylesheet"/>
+    <link href="/back/dist/css/tabler-vendors.min.css?1684106062" rel="stylesheet"/>
+    <link href="/back/dist/css/demo.min.css?1684106062" rel="stylesheet"/>
+    <link rel="stylesheet" href="/back/dist/libs/ijabo/ijabo.min.css">
+
+    <link rel="stylesheet" href="/back/dist/libs/ijaboCropTool/ijaboCropTool.min.css">
     @stack('stylesheets')
     @livewireStyles
     <style>
@@ -38,7 +38,7 @@
     </style>
   </head>
   <body >
-    <script src="./back/dist/js/demo-theme.min.js?1684106062"></script>
+    <script src="/back/dist/js/demo-theme.min.js?1684106062"></script>
     <div class="page">
       <!-- Navbar -->
    @include('back.layouts.inc.header')
@@ -56,19 +56,19 @@
     </div>
 
     <!-- Libs JS -->
-    <script src="./back/dist/libs/apexcharts/dist/apexcharts.min.js?1684106062" defer></script>
-    <script src={{asset('back/dist/libs/jquery/jquery-3.6.0.min.js')}}></script>
-    <script src={{asset('back/dist/libs/ijabo/ijabo.min.js')}}></script>
-    <script src="./back/dist/libs/jsvectormap/dist/js/jsvectormap.min.js?1684106062" defer></script>
-    <script src="./back/dist/libs/jsvectormap/dist/maps/world.js?1684106062" defer></script>
-    <script src="./back/dist/libs/jsvectormap/dist/maps/world-merc.js?1684106062" defer></script>
-    <script src="{{ asset('/back/dist/libs/ijaboCropTool/ijaboCropTool.min.js') }}"></script>
-    <script src="{{asset('back/dist/libs/ijaboViewer/jquery.ijaboViewer.min.js')}}"></script>
+    <script src="/back/dist/libs/apexcharts/dist/apexcharts.min.js?1684106062" defer></script>
+    <script src="/back/dist/libs/jquery/jquery-3.6.0.min.js"></script>
+    <script src="/back/dist/libs/ijabo/ijabo.min.js"></script>
+    <script src="/back/dist/libs/jsvectormap/dist/js/jsvectormap.min.js?1684106062" defer></script>
+    <script src="/back/dist/libs/jsvectormap/dist/maps/world.js?1684106062" defer></script>
+    <script src="/back/dist/libs/jsvectormap/dist/maps/world-merc.js?1684106062" defer></script>
+    <script src="/back/dist/libs/ijaboCropTool/ijaboCropTool.min.js"></script>
+    <script src="/back/dist/libs/ijaboViewer/jquery.ijaboViewer.min.js"></script>
     <!-- Tabler Core -->
-    <script src="./back/dist/js/tabler.min.js?1684106062" defer></script>
+    <script src="/back/dist/js/tabler.min.js?1684106062" defer></script>
     @stack('scripts')
     @livewireScripts
-    <script src="./back/dist/js/demo.min.js?1684106062" defer></script>
+    <script src="/back/dist/js/demo.min.js?1684106062" defer></script>
     <script>
         window.addEventListener('showToastr',function(event){
             if (event.detail.type==='info'){

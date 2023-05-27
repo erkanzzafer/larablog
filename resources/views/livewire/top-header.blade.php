@@ -126,11 +126,11 @@
             <div class="d-flex flex-column flex-md-row flex-fill align-items-stretch align-items-md-center">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link" href="./" >
+                  <a class="nav-link" href="{{route('author.home')}}" >
                     <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
 
                     <span class="nav-link-title">
-                      Home
+                      Anasayfa
                     </span>
                   </a>
                 </li>
@@ -163,7 +163,7 @@
                  <li class="nav-item">
                     <a class="nav-link" href="{{route('author.authors')}}" >
                       <span class="nav-link-title">
-                      Authors
+                      Kullanıcılar
                       </span>
                     </a>
 
@@ -174,7 +174,7 @@
                   <a class="nav-link dropdown-toggle" href="#navbar-extra" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
 
                     <span class="nav-link-title">
-                      Posts
+                      Sayfalar
                     </span>
                   </a>
                   <div class="dropdown-menu">
@@ -182,11 +182,11 @@
                       <div class="dropdown-menu-column">
 
 
-                        <a class="dropdown-item" href="./activity.html">
-                          Add New
+                        <a class="dropdown-item" href="{{route('author.posts.add-post')}}">
+                         Sayfa Ekle
                         </a>
                         <a class="dropdown-item" href="./activity.html">
-                            All Posts
+                         Tüm Sayfa
                           </a>
                       </div>
                       <div class="dropdown-menu-column">
@@ -198,14 +198,14 @@
                   <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
 
                     <span class="nav-link-title">
-                      Settings
+                      Ayarlar
                     </span>
                   </a>
                   <div class="dropdown-menu">
                     <div class="dropdown-menu-columns">
                       <div class="dropdown-menu-column">
                         <a class="dropdown-item" href="{{route('author.settings')}}">
-                          General Setting
+                          Genel Ayarlar
                         </a>
 
                       </div>
