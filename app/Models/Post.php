@@ -18,4 +18,20 @@ class Post extends Model
     'seo_etiket',
     'seo_icerik',
     'sayfa_gorsel'];
+
+
+    public function subcategories()
+    {
+        return $this->belongsTo(Subcategory::class, 'category_id', 'id');
+    }
+
+
+    public function scopeSearch($query,$term){
+            $term="%$term%";
+            $query->where(function($query) use ($term){
+                $query->where('post_title','like',$term);
+            });
+
+    }
+
 }

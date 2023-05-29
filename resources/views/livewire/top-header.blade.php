@@ -165,7 +165,7 @@
                   <a class="nav-link dropdown-toggle" href="#navbar-extra" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
 
                     <span class="nav-link-title">
-                      Yazılar
+                      Ürünler
                     </span>
                   </a>
                   <div class="dropdown-menu">
@@ -174,10 +174,10 @@
 
 
                         <a class="dropdown-item" href="{{route('author.posts.add-post')}}">
-                         Yazı Ekle
+                         Ürün Ekle
                         </a>
                         <a class="dropdown-item" href="{{route('author.posts.all-posts')}}">
-                         Tüm Yazılar
+                         Tüm Ürünler
                           </a>
                       </div>
                       <div class="dropdown-menu-column">
