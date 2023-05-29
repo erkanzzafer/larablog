@@ -22,9 +22,9 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Sayfa İçeriği <span class="form-label-description">56/100</span></label>
-                        <textarea class="form-control" name="sayfa_icerik" rows="6" placeholder="Content..">Oh! Come and see the violence inherent in the system! Help, help, I'm being repressed! We shall say 'Ni' again to you, if you do not appease us. I'm not a witch. I'm not a witch. Camelot!</textarea>
+                        <textarea class="ckeditor form-control" name="sayfa_icerik" id="sayfa_icerik" rows="6" placeholder="Content..">Oh! Come and see the violence inherent in the system! Help, help, I'm being repressed! We shall say 'Ni' again to you, if you do not appease us. I'm not a witch. I'm not a witch. Camelot!</textarea>
                         <span class="text-danger error-text sayfa_icerik_error"></span>
-                      </div>
+                    </div>
                       <div class="mb-3">
                         <div class="form-label">Kategori Seçimi</div>
                         <select class="form-select" name="sayfa_kategori">
@@ -73,6 +73,10 @@
 @endsection
 @push('scripts')
 
+<script src="/ckeditor/ckeditor.js">
+
+</script>
+
 <script>
   $(function(){
 
@@ -94,13 +98,15 @@
     $('form#addPostForm').on('submit',function(e){
     e.preventDefault();
     toastr.remove();
-
+    var post_content = CKEDITOR.instances.sayfa_icerik.getData();
     var form=this;
-    var formdata=new FormData(form);
+    //var post_content = document.getElementById('sayfa_icerik').value;
+    var fromdata=new FormData(form);
+        fromdata.append('sayfa_icerik',post_content);
     $.ajax({
         url:$(form).attr('action'),
         method:$(form).attr('method'),
-        data:formdata,
+        data:fromdata,
         processData:false,
         dataType:'json',
         contentType:false,
@@ -111,7 +117,8 @@
         success:function(response){
             if(response.code==1){
                 $(form)[0].reset();
-                $('div.image_holder').html('');
+                $('div.image_holder').find('img').attr('src','');
+                CKEDITOR.instances.sayfa_icerik.setData('');
                 toastr.success(response.msg);
 
             }else{

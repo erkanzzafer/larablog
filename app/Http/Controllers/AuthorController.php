@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Post;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
-
+use Intervention\Image\Facades\Image;
 class AuthorController extends Controller
 {
 
@@ -45,6 +45,11 @@ class AuthorController extends Controller
         File::delete (public_path($file_path));
         }
         $upload = $file->move (public_path($path), $new_picture_name);
+
+
+
+
+
         if($upload) {
         $user->update([
         'picture'=>$new_picture_name
@@ -150,7 +155,13 @@ class AuthorController extends Controller
                         $new_filename=time().'_'.$filename;
                           //$filename=time().'_'.rand(1,2000).'_larablog_favicon.co';
                       //  $upload = Storage::disk('public')-> put($new_filename,(string)file_get_contents($file));
-                        $upload=$file->move(public_path($path),$new_filename);
+                      $upload=$file->move(public_path($path),$new_filename);
+
+
+
+
+
+
                         if($upload){
                             $post= new Post();
                             $post->author_id=auth()->id();

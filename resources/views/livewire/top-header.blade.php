@@ -159,22 +159,13 @@
                     </div>
                   </li>
 
-                 @if (auth()->user()->type==1)
-                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('author.authors')}}" >
-                      <span class="nav-link-title">
-                      Kullanıcılar
-                      </span>
-                    </a>
 
-                  </li>
-                 @endif
 
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#navbar-extra" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
 
                     <span class="nav-link-title">
-                      Sayfalar
+                      Yazılar
                     </span>
                   </a>
                   <div class="dropdown-menu">
@@ -183,10 +174,10 @@
 
 
                         <a class="dropdown-item" href="{{route('author.posts.add-post')}}">
-                         Sayfa Ekle
+                         Yazı Ekle
                         </a>
-                        <a class="dropdown-item" href="./activity.html">
-                         Tüm Sayfa
+                        <a class="dropdown-item" href="{{route('author.posts.all-posts')}}">
+                         Tüm Yazılar
                           </a>
                       </div>
                       <div class="dropdown-menu-column">
@@ -194,6 +185,17 @@
                     </div>
                   </div>
                 </li>
+
+                @if (auth()->user()->type==1)
+                <li class="nav-item">
+                   <a class="nav-link" href="{{route('author.authors')}}" >
+                     <span class="nav-link-title">
+                     Kullanıcılar
+                     </span>
+                   </a>
+
+                 </li>
+                @endif
                 <li class="nav-item active dropdown">
                   <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
 
