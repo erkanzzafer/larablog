@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Subcategory;
 use Livewire\Component;
 use Illuminate\Support\Str;
+use App\Models\Post;
 
 class Categories extends Component
 {
@@ -15,7 +16,9 @@ class Categories extends Component
     public $updateCategoryMode=false;
     public $updateSubCategoryMode=false;
 
-
+    protected $listeners=[
+        'deleteCategoryAction',
+    ];
 
     public function addSubCategory(){
 
@@ -105,6 +108,33 @@ class Categories extends Component
         return view('livewire.categories',[
             'categories' =>Category::orderBy('ordering','asc')->get(),
         ]);
+    }
+
+    public function deleteCategory($id){
+        $category=Category::find($id);
+        $this->dispatchBrowserEvent('deleteCategory',[
+            'title' => 'Emin misiniz?',
+            'html'  => '<b>'.$category->category_name.'</b> isimli kategori silinecek',
+            'id'    => $id,
+        ]);
+    }
+
+
+    public function deleteCategoryAction($id){
+        $category = Category::where('id',$id)->first();
+        $subcategories=Subcategory::where('parent_category',$category->id)->whereHas('posts')->with('posts')->get();
+        if (!empty($subcategories) && count($subcategories)>0){
+            $totalPosts=0;
+            foreach($subcategories as $subcat){
+                $totalPosts+=Post::where('category_id',$subcat->id)->get()->count();
+            }
+            $this->showToastr('Bu kategori ('.$totalPosts.') ürün ile ilişkili. Silinemez','error');
+        }else
+        {
+            Subcategory::where('parent_category',$category->id)->delete();
+            $category->delete();
+            $this->showToastr('Kategori Silindi','info');
+        }
     }
 
 
