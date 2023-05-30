@@ -4,12 +4,12 @@
 <div class="row g-2 align-items-center">
     <div class="col">
       <h2 class="page-title">
-        Yeni Sayfa Ekle
+        Ürün Düzenle
       </h2>
     </div>
   </div>
 
-  <form action="{{route('author.posts.createPost2')}}" method="post"  id="addPostForm" enctype="multipart/form-data">
+  <form action="{{route('author.posts.updatePost',['post_id' =>Request('post_id')])}}" method="post"  id="editPostForm" enctype="multipart/form-data">
     @csrf
     <div class="card">
         <div class="card-body">
@@ -17,12 +17,12 @@
                 <div class="col-md-9">
                     <div class="mb-3">
                         <label for="" class="form-label">Sayfa Başlığı</label>
-                        <input type="text"  class="form-control" name="sayfa_baslik" placeholder="Enter Post Title">
+                        <input type="text"  class="form-control" name="sayfa_baslik" placeholder="Enter Post Title" value="{{$post->post_title}}">
                         <span class="text-danger error-text sayfa_baslik_error"></span>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Sayfa İçeriği <span class="form-label-description">56/100</span></label>
-                        <textarea class="ckeditor form-control" name="sayfa_icerik" id="sayfa_icerik" rows="6" placeholder="Content..">Oh! Come and see the violence inherent in the system! Help, help, I'm being repressed! We shall say 'Ni' again to you, if you do not appease us. I'm not a witch. I'm not a witch. Camelot!</textarea>
+                        <textarea class="ckeditor form-control" name="sayfa_icerik" id="sayfa_icerik" rows="6" placeholder="Content..">{!!$post->post_content!!}</textarea>
                         <span class="text-danger error-text sayfa_icerik_error"></span>
                     </div>
                       <div class="mb-3">
@@ -30,7 +30,7 @@
                         <select class="form-select" name="sayfa_kategori">
                           <option value="">Seçim Yapınız</option>
                             @foreach (\App\Models\Subcategory::all() as $subcategory )
-                                    <option value="{{$subcategory->id}}">{{$subcategory->subcategory_name}}</option>
+                                    <option value="{{$subcategory->id}}" {{$subcategory->id == $post->category_id ? 'selected' : ''}}>{{$subcategory->subcategory_name}}</option>
                             @endforeach
 
                         </select>
@@ -38,46 +38,47 @@
                       </div>
                       <div class="mb-3">
                         <label for="" class="form-label">SEO Başlık</label>
-                        <input type="text"  class="form-control" name="seo_baslik" placeholder="Enter Post Title">
+                        <input type="text"  class="form-control" name="seo_baslik" placeholder="Enter Post Title" value="{{$post->seo_baslik}}">
                         <span class="text-danger error-text seo_baslik_error"></span>
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">SEO Etiket</label>
-                        <input type="text"  class="form-control" name="seo_etiket" placeholder="Enter Post Title">
+                        <input type="text"  class="form-control" name="seo_etiket" placeholder="Enter Post Title" value="{{$post->seo_etiket}}">
                         <span class="text-danger error-text seo_etiket_error"></span>
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">SEO İçerik</label>
-                        <input type="text"  class="form-control" name="seo_icerik" placeholder="Enter Post Title">
+                        <input type="text"  class="form-control" name="seo_icerik" placeholder="Enter Post Title" value="{{$post->seo_icerik}}">
                         <span class="text-danger error-text seo_icerik_error"></span>
                     </div>
+
                     <div class="mb-3">
                         <label for="" class="form-label">Video</label>
-                        <input type="text"  class="form-control" name="video" placeholder="Video Url giriniz">
+                        <input type="text"  class="form-control" name="video" placeholder="Video Url giriniz" value="{{$post->video}}">
                         <span class="text-danger error-text video_error"></span>
                     </div>
 
                     <div class="mb-3">
                         <label for="" class="form-label">Barkod</label>
-                        <input type="text"  class="form-control" name="barkod" placeholder="Barkod Giriniz">
+                        <input type="text"  class="form-control" name="barkod" placeholder="Barkod Giriniz" value="{{$post->barkod}}">
                         <span class="text-danger error-text barkod_error"></span>
                     </div>
 
                     <div class="mb-3">
                         <label for="" class="form-label">Fiyat</label>
-                        <input type="text"  class="form-control" name="fiyat" placeholder="Fiyat Giriniz">
+                        <input type="text"  class="form-control" name="fiyat" placeholder="Fiyat Giriniz" value="{{$post->fiyat}}">
                         <span class="text-danger error-text fiyat_error"></span>
                     </div>
 
                     <div class="mb-3">
                         <label for="" class="form-label">İndirimli Fiyat</label>
-                        <input type="text"  class="form-control" name="fiyat_indirimli" placeholder="İndirimli Fiyat Giriniz">
+                        <input type="text"  class="form-control" name="fiyat_indirimli" placeholder="İndirimli Fiyat Giriniz" value="{{$post->fiyat_indirimli}}">
                         <span class="text-danger error-text fiyat_indirimli_error"></span>
                     </div>
 
                     <div class="mb-3">
                         <label for="" class="form-label">Stok Kodu</label>
-                        <input type="text"  class="form-control" name="stok_kodu" placeholder="Stok Kodu Giriniz">
+                        <input type="text"  class="form-control" name="stok_kodu" placeholder="Stok Kodu Giriniz" value="{{$post->stok_kodu}}">
                         <span class="text-danger error-text stok_kodu_error"></span>
                     </div>
 
@@ -87,9 +88,9 @@
                         <span class="text-danger error-text sayfa_gorsel_error"></span>
                     </div>
                     <div class="image_holder mb-2" style="max-width: 250px" >
-                        <img src="" alt="" class="img-thumbnail" id="image-previewer" data-ijabo-default-img=''>
+                        <img src="" alt="" class="img-thumbnail" id="image-previewer" data-ijabo-default-img='/back/images/post_images/{{$post->sayfa_gorsel}}'>
                     </div>
-                    <button type="submit" class="btn btn-primary">Ürün Ekle</button>
+                    <button type="submit" class="btn btn-primary">Ürün Güncelle</button>
                 </div>
             </div>
         </div>
@@ -124,7 +125,7 @@
 
         }
     });
-    $('form#addPostForm').on('submit',function(e){
+    $('form#editPostForm').on('submit',function(e){
     e.preventDefault();
     toastr.remove();
     var post_content = CKEDITOR.instances.sayfa_icerik.getData();
@@ -145,9 +146,6 @@
 
         success:function(response){
             if(response.code==1){
-                $(form)[0].reset();
-                $('div.image_holder').find('img').attr('src','');
-                CKEDITOR.instances.sayfa_icerik.setData('');
                 toastr.success(response.msg);
 
             }else{

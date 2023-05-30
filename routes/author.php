@@ -39,6 +39,8 @@ Route::prefix('author')->name('author.')->group(function(){
             Route::post('/create',[AuthorController::class,'createPost'])->name('createPost');
             Route::post('/create',[AuthorController::class,'createPost2'])->name('createPost2');
             Route::view('/all','back.pages.all-posts')->name('all-posts');
+            Route::get('/edit-post',[AuthorController::class,'editPost'])->name('editPost');
+            Route::post('/update-post',[AuthorController::class,'updatePost'])->name('updatePost');
         });
 
 

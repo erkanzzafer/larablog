@@ -15,15 +15,15 @@
         <form method="post" action="/author/addsubcategories">
             @csrf
       <div class="modal-header">
-        <h5 class="modal-title">Add SubCategory</h5>
+        <h5 class="modal-title">Alt Kategori Ekle</h5>
 
       </div>
       <div class="modal-body">
                      <div class="mb-3">
-                          <div class="form-label">Parent Category</div>
+                          <div class="form-label">Ana Kategori</div>
                           <select class="form-select" name='parent_category'>
 
-                                <option value="">No Selected</option>
+                                <option value="">Seçim Yapınız</option>
 
                             @foreach (\App\Models\Category::all() as $category )
                             <option value="{{$category->id}}"> {{$category->category_name}}</option>
@@ -33,14 +33,14 @@
                      </div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">UserName</label>
-                        <input type="text" class="form-control" name="subcategory_name" placeholder="Enter Sub Category" >
+                        <label class="form-label">Alt Kategori Adı</label>
+                        <input type="text" class="form-control" name="subcategory_name" placeholder="Alt kategori adı girin" >
                         <span class="text-danger">
 
                         </span>
                       </div>
 
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-primary">Kaydet</button>
                     </form>
                      </div>
                 </div>

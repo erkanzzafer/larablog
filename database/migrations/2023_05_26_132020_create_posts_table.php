@@ -23,6 +23,11 @@ return new class extends Migration
             $table->string('seo_baslik')->nullable();
             $table->string('seo_etiket')->nullable();
             $table->string('seo_icerik')->nullable();
+            $table->string('video')->nullable();
+            $table->string('barkod')->nullable();
+            $table->string('fiyat_indirimli')->nullable();
+            $table->string('fiyat')->nullable();
+            $table->string('stok_kodu')->nullable();
             $table->string('sayfa_gorsel')->nullable();
             $table->timestamps();
         });

@@ -23,9 +23,9 @@
                 <div class="card">
                   <div class="card-header">
                     <ul class="nav nav-pills card-header-pills">
-                        <h4>SubCategories</h4>
+                        <h4>Alt Kategoriler</h4>
                       <li class="nav-item ms-auto">
-                        <a href="{{route('author.addsubcategory')}}" class="btn btn-sm btn-primary">Add Sub Category</a>
+                        <a href="{{route('author.addsubcategory')}}" class="btn btn-sm btn-primary">Alt Kategori Ekle</a>
                     </li>
                     </ul>
                   </div>
@@ -34,9 +34,9 @@
                         <table class="table table-vcenter card-table table-striped">
                           <thead>
                             <tr>
-                              <th>Sub Cat. Name</th>
-                              <th>Parent Category</th>
-                              <th>Number of Posts</th>
+                              <th>Alt Kategori Adı</th>
+                              <th>Kategori Adı</th>
+                              <th>Ürün Sayısı</th>
                               <th class="w-1"></th>
                             </tr>
                           </thead>
@@ -52,8 +52,8 @@
                                </td>
                               <td>
                                 <div class="btn-group">
-                                    <a href="{{url('author/editsubcategories/'.$subcategory->id)}}" class="btn btn-sm btn-primary">Edit</a> &nbsp;
-                                    <a href="#" class="btn btn-sm btn-danger">Delete</a> &nbsp;
+                                    <a href="{{url('author/editsubcategories/'.$subcategory->id)}}" class="btn btn-sm btn-primary">Düzenle</a> &nbsp;
+                                    <a href="#" class="btn btn-sm btn-danger">Sil</a> &nbsp;
                                 </div>
                               </td>
                             </tr>

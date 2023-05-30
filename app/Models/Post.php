@@ -17,7 +17,13 @@ class Post extends Model
     'seo_baslik',
     'seo_etiket',
     'seo_icerik',
-    'sayfa_gorsel'];
+    'sayfa_gorsel',
+    'video',
+    'barkod',
+    'fiyat',
+    'fiyat_indirimli',
+    'stok_kodu'
+];
 
 
     public function subcategories()

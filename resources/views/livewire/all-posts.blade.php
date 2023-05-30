@@ -19,14 +19,15 @@
             <label for="" class="form-label">Yazar</label>
             <select name="" class="form-select" id="">
                     <option value="">Seçim Yapınız</option>
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
+                    @foreach (\App\Models\User::whereHas('posts')->get() as $author )
+                    <option value="{{$author->id}}">{{$author->name}}</option>
+                    @endforeach
+
             </select>
         </div>
         <div class="col-md-2 mb-3">
             <label for="" class="form-label">Sırala</label>
-            <select name="" class="form-select" id="">
+            <select name="" class="form-select" id="" wire:model='orderBy'>
                     <option value="asc">A'dan Z'ye</option>
                     <option value="desc">Z'den A'ya</option>
             </select>
@@ -43,8 +44,8 @@
                 <h5 class="m-0 mb-1">{{$post->subcategories->subcategory_name}}</h5>
             </div>
             <div class="d-flex">
-                <a href="" class="card-btn">Edit</a>
-                <a href="" class="card-btn">Delete</a>
+                <a href="{{route('author.posts.editPost',['post_id'=>$post->id])}}" class="card-btn">Edit</a>
+                <a href="" wire:click.prevent="deletePost({{$post->id}})" class="card-btn">Delete</a>
             </div>
         </div>
     </div>
