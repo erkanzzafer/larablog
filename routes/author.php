@@ -31,7 +31,7 @@ Route::prefix('author')->name('author.')->group(function(){
         Route::post('/addsubcategories',[SubCategory::class,'addSubcategory']);
         Route::get('/editsubcategories/{id}',[SubCategory::class,'editSubcategory'])->name('editsubcategories');
         Route::put('/updatesubcategories/{id}',[SubCategory::class,'updateSubcategory'])->name('updatesubcategories');
-
+        Route::delete('/deletesubcategories/{id}',[SubCategory::class,'deleteSubcategory']);
 
 
         Route::prefix('posts')->name('posts.')->group(function(){
@@ -41,6 +41,7 @@ Route::prefix('author')->name('author.')->group(function(){
             Route::view('/all','back.pages.all-posts')->name('all-posts');
             Route::get('/edit-post',[AuthorController::class,'editPost'])->name('editPost');
             Route::post('/update-post',[AuthorController::class,'updatePost'])->name('updatePost');
+
         });
 
 

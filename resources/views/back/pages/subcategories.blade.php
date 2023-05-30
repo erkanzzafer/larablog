@@ -43,7 +43,7 @@
                           <tbody>
                             @foreach (\App\Models\Subcategory::all() as $subcategory )
                              <tr>
-                              <td>{{$subcategory->subcategory_name}}</td>
+                              <td id="td-{{$subcategory->id}}">{{$subcategory->subcategory_name}}</td>
                               <td class="text-muted">
                               {{$subcategory->category->category_name}}
                               </td>
@@ -53,7 +53,7 @@
                               <td>
                                 <div class="btn-group">
                                     <a href="{{url('author/editsubcategories/'.$subcategory->id)}}" class="btn btn-sm btn-primary">Düzenle</a> &nbsp;
-                                    <a href="#" class="btn btn-sm btn-danger">Sil</a> &nbsp;
+                                    <button id="myButton"  data-id="{{$subcategory->id}}" class="btn btn-sm btn-danger deneme">Sil</button>
                                 </div>
                               </td>
                             </tr>
@@ -69,3 +69,40 @@
       </div>
 @endsection
 
+@push('scripts')
+
+<script>
+
+$(document).ready(function() {
+    $('.deneme').on('click', function() {
+        var id = $(this).data('id');
+        var confirmation = confirm('Bu veriyi silmek istediğinize emin misiniz?');
+        if (confirmation) {
+            $.ajax({
+                url: 'deletesubcategories/' + id,
+                type: 'POST',
+                data: {
+                        _method: 'DELETE'
+                    },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    // Başarı durumunda işlemleri burada yapabilirsiniz
+                    console.log(response.message);
+                    // Silinen veriyi UI'dan kaldırmak için gerekli güncellemeleri yapabilirsiniz
+                    toastr.success(response.message);
+                    location.reload();
+                },
+                error: function(xhr, status, error) {
+                    // Hata durumunda işlemleri burada yapabilirsiniz
+                    toastr.error(response.message);
+            }
+
+        });
+    }
+});
+});
+
+</script>
+@endpush

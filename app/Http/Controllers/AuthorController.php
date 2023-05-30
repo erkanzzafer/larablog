@@ -282,6 +282,6 @@ class AuthorController extends Controller
             }
 
 
-
+          
 
         }

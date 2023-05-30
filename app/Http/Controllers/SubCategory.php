@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Subcategory as ModelsSubcategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Models\Post;
 
 class SubCategory extends Controller
 {
@@ -43,7 +44,18 @@ class SubCategory extends Controller
         }else{
             dd("hata");
         }
+    }
 
+    public function deleteSubcategory ($id){
+        $subcategory= ModelsSubcategory::where('id',$id)->first();
+        $posts=Post::where('category_id',$subcategory->id)->get()->toArray();
+
+        if (!empty($posts) && count($posts)>0){
+            return response()->json(['error' => true, 'message' => 'Bu kategoriye ait'.count($posts).' tane ürün eklenmiş. Silinemez']);
+        }else{
+            $subcategory->delete();
+            return response()->json(['success' => true, 'message' => 'Alt kategori başarıyla silindi.']);
+        }
 
 
     }

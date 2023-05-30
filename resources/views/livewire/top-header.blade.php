@@ -163,7 +163,7 @@
                     <a class="nav-link dropdown-toggle" href="#navbar-extra" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
 
                       <span class="nav-link-title">
-                        Kategoriler
+                        Kategori & Alt Kategori
                       </span>
                     </a>
                     <div class="dropdown-menu">
@@ -172,10 +172,10 @@
 
 
                           <a class="dropdown-item" href="{{route('author.categories')}}" >
-                           Kategori Ekle
+                           Kategoriler
                           </a>
                           <a class="dropdown-item" href="{{route('author.subcategories')}}">
-                             Alt Kategori Ekle
+                             Alt Kategoriler
                             </a>
                         </div>
                         <div class="dropdown-menu-column">
