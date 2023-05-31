@@ -88,16 +88,12 @@ $(document).ready(function() {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function(response) {
-                    // Başarı durumunda işlemleri burada yapabilirsiniz
-                    console.log(response.message);
-                    // Silinen veriyi UI'dan kaldırmak için gerekli güncellemeleri yapabilirsiniz
                     toastr.success(response.message);
                     location.reload();
                 },
-                error: function(xhr, status, error) {
-                    // Hata durumunda işlemleri burada yapabilirsiniz
+                error: function(response) {
                     toastr.error(response.message);
-            }
+                }
 
         });
     }

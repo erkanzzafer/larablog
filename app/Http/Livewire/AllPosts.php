@@ -38,7 +38,7 @@ class AllPosts extends Component
     public function render()
     {
         return view('livewire.all-posts',[
-            'posts' =>auth()->user()->type ==1 ?
+                            'posts' =>auth()->user()->type ==1 ?
                              Post::search(trim($this->search))
                              ->when($this->category,function($query){
                                 $query->where('category_id',$this->category);
@@ -50,7 +50,7 @@ class AllPosts extends Component
                                 $query->orderBy('id',$this->orderBy);
                              })
                              ->with('subcategories')->paginate($this->perPage) :
-                             Post::where('author_id',auth()->id())->paginate($this->perPage)
+                             Post::where('author_id',auth()->id())
                              ->when($this->category,function($query){
                                 $query->where('category_id',$this->category);
                              })
@@ -60,6 +60,7 @@ class AllPosts extends Component
                              ->when($this->orderBy,function($query){
                                 $query->orderBy('id',$this->orderBy);
                              })
+                             ->with('subcategories')->paginate($this->perPage)
         ]);
     }
 
