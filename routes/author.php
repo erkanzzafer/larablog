@@ -41,6 +41,8 @@ Route::prefix('author')->name('author.')->group(function(){
             Route::delete('/deletesubcategories/{id}',[SubCategory::class,'deleteSubcategory']);
         });
 
+
+
         Route::prefix('posts')->name('posts.')->group(function(){
             Route::view('/add-post','back.pages.add-post')->name('add-post');
             Route::post('/create',[AuthorController::class,'createPost'])->name('createPost');

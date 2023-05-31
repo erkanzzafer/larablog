@@ -36,11 +36,9 @@
                                       <th class="w-1"></th>
                                     </tr>
                                   </thead>
-                                  <tbody>
+                                  <tbody id="sortable_category">
                                     @forelse ($categories as $category )
-
-
-                                    <tr>
+                                    <tr data-index="{{$category->id}}" data-ordering="{{$category->ordering}}">
                                       <td>{{$category->category_name}}</td>
                                       <td class="text-muted">
                                        {{$category->subcategories->count()}}
@@ -165,3 +163,24 @@ data-bs-backdrop="static" data-bs-keyboard="false">
     </div>
 
 </div>
+@push('scripts')
+<script>
+    $('table tbody#sortable_category').sortable({
+        update:function(event,ui){
+            $(this).children().each(function(index){
+                if($(this).attr("data-ordering") != (index+1)){
+                    $(this).attr("data-ordering",(index+1)).addClass("updated");
+                }
+            });
+            var positions=[];
+            $(".updated").each(function(){
+                positions.push([$(this).attr("data-index"),$(this).attr("data-ordering")]);
+                $(this).removeClass("updated");
+            });
+          //  alert(positions);
+          window.livewire.emit("updateCategoryOrdering",positions);
+        }
+    });
+
+</script>
+@endpush

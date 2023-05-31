@@ -18,6 +18,7 @@ class Categories extends Component
 
     protected $listeners=[
         'deleteCategoryAction',
+        'updateCategoryOrdering'
     ];
 
     public function addSubCategory(){
@@ -135,6 +136,18 @@ class Categories extends Component
             $category->delete();
             $this->showToastr('Kategori Silindi','info');
         }
+    }
+
+    public function updateCategoryOrdering ($positions){
+       foreach($positions as $position){
+        $index=$position[0];
+        $newPosition=$position[1];
+        Category::where('id',$index)->update([
+            'ordering' => $newPosition
+        ]);
+
+       }
+       $this->showToastr('Menü sıralaması güncellendi', 'success');
     }
 
 
