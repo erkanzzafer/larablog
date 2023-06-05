@@ -27,7 +27,7 @@ class AuthorLoginForm extends Component
                 'login_id' => 'required|email|exists:users,email',
                 'password' =>  'required|min:5'
             ],[
-                'login_id' => "Email or Username required",
+                'login_id.required' => "Email or Username required",
                 'login_id.email'=>'Invalid email address',
                 'login_id.exists'=>'Email is not registered',
                 'password.required' => 'Password is required',

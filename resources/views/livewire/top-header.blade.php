@@ -169,8 +169,6 @@
                     <div class="dropdown-menu">
                       <div class="dropdown-menu-columns">
                         <div class="dropdown-menu-column">
-
-
                           <a class="dropdown-item" href="{{route('author.categories')}}" >
                            Kategoriler
                           </a>
@@ -178,7 +176,26 @@
                              Alt Kategoriler
                             </a>
                         </div>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#navbar-extra" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+
+                      <span class="nav-link-title">
+                      Yazılar
+                      </span>
+                    </a>
+                    <div class="dropdown-menu">
+                      <div class="dropdown-menu-columns">
                         <div class="dropdown-menu-column">
+                          <a class="dropdown-item" href="{{route('author.texts.add-text')}}">
+                             Yazı Ekle
+                            </a>
+                            <a class="dropdown-item" href="{{route('author.texts.all-texts')}}" >
+                                Yazılar
+                               </a>
                         </div>
                       </div>
                     </div>

@@ -1,17 +1,17 @@
 
-<div>
+
     @if(session('fail'))
     <div class="alert alert-danger">
         {{ session('fail') }}
     </div>
 @endif
-
+<div>
     <form action="./" wire:submit.prevent="LoginHandler()" method="post" autocomplete="off" novalidate="">
         <div class="mb-3">
           <label class="form-label">Email or UserName</label>
           <input type="text" class="form-control" placeholder="Enter email or Username" wire:model="login_id" autocomplete="off">
-            @error('email')
-                <span class="text-danger">{{$login_id}}</span>
+            @error('login_id')
+                <span class="text-danger">{{$message}}</span>
             @enderror
         </div>
         <div class="mb-2">

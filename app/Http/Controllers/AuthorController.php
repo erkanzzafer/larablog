@@ -11,9 +11,11 @@ use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Illuminate\Support\Facades\Hash;
 
 use App\Models\Post;
+use App\Models\Text;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Session;
 class AuthorController extends Controller
 {
 
@@ -281,7 +283,102 @@ class AuthorController extends Controller
 
             }
 
+                public function createText(Request $request){
 
-          
 
+                    $request->validate([
+                        'yazi_baslik'=>'required',
+                        'yazi_icerik'=>'required',
+                        'yazi_gorsel'=>'required',
+                    ]);
+
+                    if ($request->hasFile('yazi_gorsel')){
+                        $path='back/images/text_images/';
+                        $file=$request->file('yazi_gorsel');
+                        $filename=$file->getClientOriginalName();
+                        $new_filename=time().'_'.$filename;
+                          //$filename=time().'_'.rand(1,2000).'_larablog_favicon.co';
+                      //  $upload = Storage::disk('public')-> put($new_filename,(string)file_get_contents($file));
+                      $upload=$file->move(public_path($path),$new_filename);
+                        if($upload){
+                            $post= new Text();
+                          //  $post->category_id=$request->sayfa_kategori;
+                            $post->title=$request->yazi_baslik;
+                            $post->content=$request->yazi_icerik;
+                            $post->slug=Str::slug($request->sayfa_baslik);
+                            $post->photo=$new_filename;
+                            $saved=$post->save();
+                            if($saved){
+                                Session::flash('success','Başarı ile kaydedildi');
+                            }else{
+                                Session::flash('error','Bir hata oluştu');
+                            }
+                            return redirect()->back();
+                    }
+                }
         }
+
+        public function tum_yazilar(){
+            $posts=Text::simplePaginate(3);
+            return view('back.pages.all-text', compact('posts'));
+        }
+
+        public function editText(Request $request){
+            if (!$request->text_id){
+                return abort(404);
+            }else{
+                $post=Text::find($request->text_id);
+                $data=[
+                    'post' => $post,
+                    'pageTitle' =>'Ürün Düzenle'
+                ];
+                return view('back.pages.edit-text',$data);
+            }
+        }
+
+
+        public function deleteText($id){
+                $text= Text::where('id',$id)->first();
+                if($text->delete()){
+                    return response()->json(['success' => true, 'message' => 'Yazı başarıyla silindi.']);
+                }else{
+                    return response()->json(['error' => true, 'message' => 'Hata oluştu']);
+                }
+            }
+
+        public function updateText(Request $request,$id){
+            $request->validate([
+                'yazi_baslik'=>'required',
+                'yazi_icerik'=>'required',
+            ]);
+            if ($request->hasFile('yazi_gorsel')){
+                $path='back/images/text_images/';
+                $old_post_image=Text::find($id)->photo;
+                if ($old_post_image!=null && Storage::disk('public')->exists($path.$old_post_image)){
+                    Storage::disk('public')->delete($path.$old_post_image);
+                }
+
+
+                $file=$request->file('yazi_gorsel');
+                $filename=$file->getClientOriginalName();
+                $new_filename=time().'_'.$filename;
+                $post= Text::find($id);
+                //dd($post);
+                $post->title=$request->yazi_baslik;
+                $post->content=$request->yazi_icerik;
+                $post->photo=$new_filename;
+                $upload=$file->move(public_path($path),$new_filename);
+
+
+                $saved=$post->save();
+                if($saved){
+                    Session::flash('success','Başarı ile güncellendi');
+                }else{
+                    Session::flash('error','Bir hata oluştu');
+                }
+                return redirect()->back();
+
+
+            }
+        }
+}

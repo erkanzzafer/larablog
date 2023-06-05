@@ -50,7 +50,15 @@ Route::prefix('author')->name('author.')->group(function(){
             Route::view('/all','back.pages.all-posts')->name('all-posts');
             Route::get('/edit-post',[AuthorController::class,'editPost'])->name('editPost');
             Route::post('/update-post',[AuthorController::class,'updatePost'])->name('updatePost');
+        });
 
+        Route::prefix('texts')->name('texts.')->group(function(){
+            Route::view('/add-text','back.pages.add-text')->name('add-text');
+            Route::post('/create-text',[AuthorController::class,'createText'])->name('createText');
+            Route::get('/all-text',[AuthorController::class,'tum_yazilar'])->name('all-texts');
+            Route::get('/edit-text',[AuthorController::class,'editText'])->name('editText');
+            Route::delete('/deleteText/{id}',[AuthorController::class,'deleteText'])->name('deleteText');
+            Route::put('/update-text/{id}',[AuthorController::class,'updateText'])->name('updateText');
         });
 
 

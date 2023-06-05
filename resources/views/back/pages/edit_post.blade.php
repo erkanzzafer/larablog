@@ -21,7 +21,7 @@
                         <span class="text-danger error-text sayfa_baslik_error"></span>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Sayfa İçeriği <span class="form-label-description">56/100</span></label>
+                        <label class="form-label">Sayfa İçeriği <span class="form-label-description"></span></label>
                         <textarea class="ckeditor form-control" name="sayfa_icerik" id="sayfa_icerik" rows="6" placeholder="Content..">{!!$post->post_content!!}</textarea>
                         <span class="text-danger error-text sayfa_icerik_error"></span>
                     </div>
